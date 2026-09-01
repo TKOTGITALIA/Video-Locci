@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Locci</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div id="sezioni-filtri">
+            <nav id="filters">
+                <div class="album-group" id="people-albums"></div>
+                <div class="album-group" id="date-albums"></div>
+                <div class="album-group" id="collection-albums"></div>
+                <div class="album-group" id="visual-albums"></div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="periodi-container" style="margin-bottom: 20px; display: none;"></div>
+    <div id="file-container" style="margin-bottom: 20px; display: none;"></div>
+
+    <div class="gta-leak-container">
+        <button class="btn-gta-leak" id="btn-toggle-leak" onclick="toggleVistaGTA()">
+            Leak di GTA VI
+        </button>
+    </div>
+
+    <main id="video-container" class="video-grid"></main>
+
+    <div id="video-modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
