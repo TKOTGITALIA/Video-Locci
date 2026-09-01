@@ -1,16 +1,28 @@
-const PASSWORD_FABIO = "9361"; 
-let isFabioUnlocked = false;
+let userPassword = "";
 
-function checkFabioPassword() {
-    if (isFabioUnlocked) return true;
-    const inputPrompt = prompt("Inserisci la password per accedere ai Video Fabio:");
-    if (inputPrompt === PASSWORD_FABIO) {
-        isFabioUnlocked = true;
+function ottieniPassword() {
+    if (userPassword) return true;
+    const input = prompt("Inserisci la password per sbloccare i video:");
+    if (input) {
+        userPassword = input;
         return true;
-    } else if (inputPrompt !== null) {
-        alert("Password errata!");
     }
     return false;
+}
+
+function decrittografaLink(linkCriptato) {
+    if (!linkCriptato || !linkCriptato.startsWith("U2FsdGVkX1")) {
+        return linkCriptato;
+    }
+    if (!userPassword) return null;
+
+    try {
+        const bytes = CryptoJS.AES.decrypt(linkCriptato, userPassword);
+        const linkDecrittografato = bytes.toString(CryptoJS.enc.Utf8);
+        return (linkDecrittografato && linkDecrittografato.startsWith("http")) ? linkDecrittografato : null;
+    } catch (e) {
+        return null;
+    }
 }
 
 let allVideos = [];
@@ -273,7 +285,7 @@ window.filterByExactDate = (fullDate) => {
 };
 
 window.filterByAlbum = (albumName) => {
-    if (albumName === "Video Fabio" && !checkFabioPassword()) {
+    if (albumName === "Video Fabio" && !ottieniPassword()) {
         return;
     }
     const filtered = allVideos.filter(v => v.Album === albumName);
@@ -378,19 +390,21 @@ function renderVideos(videoList, groupByMonth = true) {
 function createVideoCardHtml(v, index) {
     let thumbnailUrl = '';
 
-    if (v.Album === "Video Fabio" && !isFabioUnlocked) {
+    const realLink = decrittografaLink(v.Link) || v.Link;
+
+    if (v.Album === "Video Fabio" && !userPassword) {
         thumbnailUrl = "https://img.youtube.com/vi/00000000000/hqdefault.jpg";
     } else {
-        const isFoto = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(v.Link || '');
-        const isDropbox = (v.Link && v.Link.includes('dropbox')) || 
+        const isFoto = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(realLink || '');
+        const isDropbox = (realLink && realLink.includes('dropbox')) || 
                           (v["Nome file"] && v["Nome file"].toLowerCase().endsWith('.mp4'));
 
         if (isFoto) {
-            thumbnailUrl = v.Link;
+            thumbnailUrl = realLink;
         } else if (isDropbox) {
             thumbnailUrl = v.Miniatura || v.Thumbnail || "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='360' viewBox='0 0 480 360' fill='%23222'><rect width='480' height='360'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23aaa' font-family='sans-serif' font-size='22'>Video Dropbox</text></svg>";
         } else {
-            const videoId = getYoutubeId(v.Link);
+            const videoId = getYoutubeId(realLink);
             thumbnailUrl = videoId 
                 ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
                 : "https://img.youtube.com/vi/00000000000/hqdefault.jpg";
@@ -482,17 +496,25 @@ function apriModalDropbox(v, modal, modalBody) {
 
 window.openModal = (index) => {
     const v = currentVideosList[index];
-
     if (!v) return;
 
-    if (v.Album === "Video Fabio" && !isFabioUnlocked) {
+    if (v.Link && v.Link.startsWith("U2FsdGVkX1") && !ottieniPassword()) {
+        return;
+    }
+
+    // Tenta la decrittazione
+    const realLink = decrittografaLink(v.Link);
+
+    if (!realLink) {
+        alert("Password errata o impossibile decrittografare il link!");
+        userPassword = "";
         return;
     }
 
     const modal = document.getElementById('video-modal');
     const modalBody = document.getElementById('modal-body');
 
-    const videoId = getYoutubeId(v.Link);
+    const videoId = getYoutubeId(realLink);
     const fallbackUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
     const pulisciTesto = (val) => {
@@ -517,12 +539,12 @@ window.openModal = (index) => {
     const durataVideo = v.Durata || '/';
     const caricatoSu = v["Caricato su"] || 'Youtube';
 
-    const watchYoutubeBtnHtml = (v.Link && v.Link !== "/")
-        ? `<a href="${v.Link}" target="_blank" class="watch-link" style="margin-bottom: 12px;">Guarda su YouTube</a>`
+    const watchYoutubeBtnHtml = (realLink && realLink !== "/")
+        ? `<a href="${realLink}" target="_blank" class="watch-link" style="margin-bottom: 12px;">Guarda Video</a>`
         : '';
 
-    const shareBtnHtml = (v.Link && v.Link !== "/" && v.Album !== "Video Fabio")
-        ? `<button class="share-btn" onclick="copiaLink('${v.Link}', this)">Clicca qui per ottenere il link per condividere il video</button>`
+    const shareBtnHtml = (realLink && realLink !== "/" && v.Album !== "Video Fabio")
+        ? `<button class="share-btn" onclick="copiaLink('${realLink}', this)">Clicca qui per ottenere il link per condividere il video</button>`
         : '';
 
     let previewContent = '';
@@ -535,9 +557,16 @@ window.openModal = (index) => {
                 allowfullscreen>
             </iframe>
         `;
+    } else if (caricatoSu.toLowerCase() === 'catbox') {
+        previewContent = `
+            <video controls style="width: 100%; max-height: 400px; border-radius: 8px;">
+                <source src="${realLink}" type="video/mp4">
+                Il tuo browser non supporta la riproduzione video.
+            </video>
+        `;
     } else {
         previewContent = `
-            <img src="${v.Link || fallbackUrl}" 
+            <img src="${realLink || fallbackUrl}" 
                  onerror="this.onerror=null; this.src='${fallbackUrl}';" 
                  class="modal-thumbnail-large" 
                  alt="${v.Nome}">
@@ -962,5 +991,205 @@ window.mostraTuttiFileLeak = (btn) => {
 
     renderizzaLeakGTA(allLeaksList);
 };
+
+let modalitaDrone = false;
+let droneItemsList = [];
+let sezioneAttiva = 'gopro';
+
+function aggiornaPulsantiSezione() {
+    const container = document.getElementById('section-buttons-container');
+    if (!container) return;
+
+    if (sezioneAttiva === 'gopro') {
+        container.innerHTML = `
+            <button class="btn-gta-leak" onclick="cambiaSezione('gta')">Leak di GTA VI</button>
+            <button class="btn-gta-leak" onclick="cambiaSezione('drone')">Drone</button>
+        `;
+    } else if (sezioneAttiva === 'gta') {
+        container.innerHTML = `
+            <button class="btn-gta-leak" onclick="cambiaSezione('gopro')">Video della GoPro</button>
+            <button class="btn-gta-leak" onclick="cambiaSezione('drone')">Drone</button>
+        `;
+    } else if (sezioneAttiva === 'drone') {
+        container.innerHTML = `
+            <button class="btn-gta-leak" onclick="cambiaSezione('gopro')">Video della GoPro</button>
+            <button class="btn-gta-leak" onclick="cambiaSezione('gta')">Leak di GTA VI</button>
+        `;
+    }
+}
+
+async function cambiaSezione(nuovaSezione) {
+    if (sezioneAttiva === nuovaSezione) return;
+
+    const sezioniFiltri = document.getElementById('sezioni-filtri');
+    const periodiContainer = document.getElementById('periodi-container');
+    const fileContainer = document.getElementById('file-container');
+
+    if (nuovaSezione === 'gopro') {
+        sezioneAttiva = 'gopro';
+        if (sezioniFiltri) sezioniFiltri.style.display = 'block';
+        if (periodiContainer) periodiContainer.style.display = 'none';
+        if (fileContainer) fileContainer.style.display = 'none';
+        aggiornaPulsantiSezione();
+        
+        if (typeof loadGallery === 'function') {
+            loadGallery();
+        } else if (typeof renderVideos === 'function' && typeof allVideos !== 'undefined') {
+            renderVideos(allVideos);
+        }
+    } else if (nuovaSezione === 'gta') {
+        sezioneAttiva = 'gta';
+        if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+        if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
+        if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
+        aggiornaPulsantiSezione();
+        
+        if (typeof mostraLeakGTA === 'function') {
+            await mostraLeakGTA();
+        } else if (typeof caricaGTA === 'function') {
+            await caricaGTA();
+        }
+    } else if (nuovaSezione === 'drone') {
+        sezioneAttiva = 'drone';
+        if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+        if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
+        if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
+        aggiornaPulsantiSezione();
+        
+        if (typeof mostraDrone === 'function') {
+            await mostraDrone();
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    aggiornaPulsantiSezione();
+});
+
+async function mostraDrone() {
+    sezioneAttiva = 'drone';
+    
+    const sezioniFiltri = document.getElementById('sezioni-filtri');
+    const periodiContainer = document.getElementById('periodi-container');
+    const fileContainer = document.getElementById('file-container');
+
+    if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+    if (periodiContainer) {
+        periodiContainer.style.display = 'none';
+        periodiContainer.innerHTML = '';
+    }
+    if (fileContainer) {
+        fileContainer.style.display = 'none';
+        fileContainer.innerHTML = '';
+    }
+
+    if (typeof aggiornaPulsantiSezione === 'function') {
+        aggiornaPulsantiSezione();
+    }
+
+    const container = document.getElementById('video-container');
+    container.innerHTML = '<p style="text-align:center; width:100%;">Caricamento contenuti Drone in corso...</p>';
+
+    try {
+        const response = await fetch('data3.json?v=' + Date.now());
+        droneItemsList = await response.json();
+        renderizzaDrone(droneItemsList);
+    } catch (error) {
+        console.error("Errore nel caricamento di data3.json:", error);
+        container.innerHTML = '<p style="text-align:center; width:100%;">Errore nel caricamento dei file Drone.</p>';
+    }
+}
+
+function renderizzaDrone(items) {
+    const container = document.getElementById('video-container');
+    container.innerHTML = '';
+
+    if (!items || items.length === 0) {
+        container.innerHTML = '<p style="text-align:center; width:100%;">Nessun file Drone trovato.</p>';
+        return;
+    }
+
+    items.forEach((item, index) => {
+        const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(item.Link || '') || item["Tipo di File"]?.toLowerCase() === 'jpg';
+        const nomeFile = item.Nome || item["Nome file"] || 'File senza nome';
+
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.style.cursor = 'pointer';
+        card.onclick = () => apriModalDrone(index);
+
+        let mediaPreview = '';
+
+        if (isImage) {
+            mediaPreview = `<img src="${item.Link}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;">`;
+        } else {
+            const thumbUrl = `thumbnails2/${nomeFile}.jpg`;
+            mediaPreview = `<img src="${thumbUrl}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;" onerror="this.outerHTML='<video src=\\'${item.Link}\\' class=\\'video-thumbnail\\' style=\\'width:100%; height:180px; object-fit:cover; border-radius:8px;\\' preload=\\'metadata\\' muted playsinline></video>';">`;
+        }
+
+        const durataBadge = (item.Durata && item.Durata !== "/") 
+            ? `<span class="duration-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">${item.Durata}</span>` 
+            : '';
+
+        card.innerHTML = `
+            <div class="thumbnail-container" style="position: relative;">
+                ${mediaPreview}
+                ${durataBadge}
+            </div>
+            <div class="video-title-main" style="margin-top: 8px;">${nomeFile}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function apriModalDrone(index) {
+    const item = droneItemsList[index];
+    if (!item) return;
+
+    const modal = document.getElementById('video-modal');
+    const modalBody = document.getElementById('modal-body');
+
+    const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(item.Link || '') || item["Tipo di File"]?.toLowerCase() === 'jpg';
+
+    const caricatoSu = item["Caricato su"] || 'Catbox';
+
+    let mediaContent = isImage
+        ? `<img src="${item.Link}" alt="${item.Nome}" style="width:100%; max-height:450px; object-fit:contain; border-radius:8px;">`
+        : `<video src="${item.Link}" controls style="width:100%; max-height:450px; border-radius:8px;" autoplay></video>`;
+
+    modalBody.innerHTML = `
+        <div class="modal-video-wrapper" style="margin-bottom: 15px;">
+            ${mediaContent}
+        </div>
+
+        <div class="info-section">
+            <h4>Informazioni generali</h4>
+            <p><strong>Nome:</strong> ${item.Nome || '/'}</p>
+            <p><strong>Durata:</strong> ${item.Durata || '/'}</p>
+            <p><strong>Data:</strong> ${item.Data || '/'}</p>
+        </div>
+
+        <hr>
+
+        <div class="info-section">
+            <h4>Altre informazioni</h4>
+            <p><strong>Tipo di File:</strong> ${item["Tipo di File"] || '/'}</p>
+            <p><strong>Caricato su:</strong> ${caricatoSu}</p>
+            <p><strong>Data di Caricamento:</strong> ${item["Data di caricamento"] || '/'}</p>
+        </div>
+
+        <hr>
+
+        <div class="info-section">
+            <h4>Informazioni Fotocamera</h4>
+            <p><strong>Fotocamera:</strong> ${item.Fotocamera || '/'}</p>
+            <p><strong>Risoluzione:</strong> ${item.Risoluzione || '/'}</p>
+            <p><strong>Fotogrammi:</strong> ${item.Fotogrammi || '/'}</p>
+        </div>
+    `;
+
+    modal.style.display = "block";
+    document.body.classList.add('modal-open');
+}
 
 loadGallery();

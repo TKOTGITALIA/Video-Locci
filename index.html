@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Locci</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,11 +22,7 @@
     <div id="periodi-container" style="margin-bottom: 20px; display: none;"></div>
     <div id="file-container" style="margin-bottom: 20px; display: none;"></div>
 
-    <div class="gta-leak-container">
-        <button class="btn-gta-leak" id="btn-toggle-leak" onclick="toggleVistaGTA()">
-            Leak di GTA VI
-        </button>
-    </div>
+    <div class="gta-leak-container" id="section-buttons-container"></div>
 
     <main id="video-container" class="video-grid"></main>
 
