@@ -1,27 +1,106 @@
-let userPassword = "";
+let isFabioUnlocked = false;
+let passwordFabio = "";
 
-function ottieniPassword() {
-    if (userPassword) return true;
-    const input = prompt("Inserisci la password per sbloccare i video:");
-    if (input) {
-        userPassword = input;
-        return true;
+let isDroneUnlocked = false;
+let passwordDrone = "";
+
+function decrittografaLinkFabio(link) {
+    if (!link || !link.startsWith("U2FsdGVkX1")) return link;
+    try {
+        const bytes = CryptoJS.AES.decrypt(link, passwordFabio);
+        return bytes.toString(CryptoJS.enc.Utf8) || link;
+    } catch (e) {
+        return link;
     }
-    return false;
 }
 
-function decrittografaLink(linkCriptato) {
-    if (!linkCriptato || !linkCriptato.startsWith("U2FsdGVkX1")) {
-        return linkCriptato;
-    }
-    if (!userPassword) return null;
-
+function decrittografaLinkDrone(link) {
+    if (!link || !link.startsWith("U2FsdGVkX1")) return link;
     try {
-        const bytes = CryptoJS.AES.decrypt(linkCriptato, userPassword);
-        const linkDecrittografato = bytes.toString(CryptoJS.enc.Utf8);
-        return (linkDecrittografato && linkDecrittografato.startsWith("http")) ? linkDecrittografato : null;
+        const bytes = CryptoJS.AES.decrypt(link, passwordDrone);
+        return bytes.toString(CryptoJS.enc.Utf8) || link;
     } catch (e) {
-        return null;
+        return link;
+    }
+}
+
+function ottieniPasswordFabio() {
+    if (isFabioUnlocked) return true;
+    const input = prompt("Inserisci la password per accedere ai Video Fabio:");
+    if (!input) return false;
+
+    const sample = allVideos.find(v => v.Album === "Video Fabio" && v.Link && v.Link.startsWith("U2FsdGVkX1"));
+    if (sample) {
+        try {
+            const bytes = CryptoJS.AES.decrypt(sample.Link, input);
+            const dec = bytes.toString(CryptoJS.enc.Utf8);
+            if (dec && !dec.startsWith("U2FsdGVkX1") && dec.length > 0) {
+                passwordFabio = input;
+                isFabioUnlocked = true;
+                return true;
+            }
+        } catch (e) {}
+        alert("Password errata per i Video Fabio!");
+        return false;
+    }
+
+    passwordFabio = input;
+    isFabioUnlocked = true;
+    return true;
+}
+
+async function ottieniPasswordDrone() {
+    if (isDroneUnlocked) return true;
+
+    if (!window.droneData || window.droneData.length === 0) {
+        try {
+            const res = await fetch('data3.json?v=' + Date.now());
+            window.droneData = await res.json();
+        } catch (e) {
+            console.error("Errore nel caricamento di data3.json", e);
+        }
+    }
+
+    const input = prompt("Inserisci la password per la sezione Drone:");
+    if (!input) return false;
+
+    const sample = (window.droneData || []).find(v => v.Link && v.Link.startsWith("U2FsdGVkX1"));
+    if (sample) {
+        try {
+            const bytes = CryptoJS.AES.decrypt(sample.Link, input);
+            const dec = bytes.toString(CryptoJS.enc.Utf8);
+            if (dec && !dec.startsWith("U2FsdGVkX1") && dec.length > 0) {
+                passwordDrone = input;
+                isDroneUnlocked = true;
+                return true;
+            }
+        } catch (e) {}
+        alert("Password errata per la sezione Drone!");
+        return false;
+    }
+
+    passwordDrone = input;
+    isDroneUnlocked = true;
+    return true;
+}
+
+function decrittografaLinkFabio(link) {
+    if (!link || !link.startsWith("U2FsdGVkX1")) return link;
+    try {
+        const bytes = CryptoJS.AES.decrypt(link, passwordFabio);
+        return bytes.toString(CryptoJS.enc.Utf8) || link;
+    } catch (e) {
+        return link;
+    }
+}
+
+function decrittografaLinkDrone(link) {
+    if (!link || !link.startsWith("U2FsdGVkX1")) return link;
+    try {
+        const bytes = CryptoJS.AES.decrypt(link, passwordDrone);
+        return bytes.toString(CryptoJS.enc.Utf8) || link;
+    } catch (e) {
+        return link;
     }
 }
 
@@ -51,14 +130,15 @@ async function loadGallery() {
     try {
         const response = await fetch('data.json?v=1.13');
         allVideos = await response.json();
-        
         allVideos.reverse();
 
-        renderPeople(allVideos);
-        renderMonthsAndYears(allVideos);
+        const goproVideos = allVideos.filter(v => v.Album !== "Video Fabio");
+
+        renderPeople(goproVideos);
+        renderMonthsAndYears(goproVideos);
         renderAlbums(allVideos);
-        renderVisuals(allVideos);
-        renderVideos(allVideos);
+        renderVisuals(goproVideos);
+        renderVideos(goproVideos);
     } catch (error) {
         console.error("Errore nel caricamento dati:", error);
     }
@@ -157,19 +237,20 @@ function renderMonthsAndYears(videos) {
 function renderAlbums(videos) {
     const container = document.getElementById('collection-albums');
     let counts = {};
-    videos.forEach(v => {
+    
+    videos.filter(v => v.Album !== "Video Fabio").forEach(v => {
         if (!v.Album) return;
         counts[v.Album] = (counts[v.Album] || 0) + 1;
     });
 
     let albumsSorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
     
-    const specialKeys = ["Timelapse", "Carnevale di Ivrea", "Altro", "Video Fabio"];
+    const specialKeys = ["Timelapse", "Carnevale di Ivrea", "Altro"];
     let mainAlbums = albumsSorted.filter(a => !specialKeys.includes(a));
     let specialAlbums = specialKeys.filter(a => counts[a]);
 
     let html = '<div style="margin-bottom: 6px; display: flex; align-items: center; gap: 10px;"><strong>Album:</strong>' + 
-        `<button class="album-btn" onclick="resetFilters()"><strong>Tutti i video</strong> (${allVideos.length})</button></div>` + 
+        `<button class="album-btn" onclick="resetFilters()"><strong>Tutti i video</strong> (${allVideos.filter(v => v.Album !== "Video Fabio").length})</button></div>` + 
         '<div class="filter-row">' +
         mainAlbums.map(a => 
             `<button class="album-btn" onclick="filterByAlbum('${a}')">${a} (${counts[a]})</button>`
@@ -285,7 +366,7 @@ window.filterByExactDate = (fullDate) => {
 };
 
 window.filterByAlbum = (albumName) => {
-    if (albumName === "Video Fabio" && !ottieniPassword()) {
+    if (albumName === "Video Fabio" && !ottieniPasswordFabio()) {
         return;
     }
     const filtered = allVideos.filter(v => v.Album === albumName);
@@ -298,7 +379,8 @@ window.filterByVisual = (visualName) => {
 };
 
 window.resetFilters = () => {
-    renderVideos(allVideos);
+    const goproVideos = allVideos.filter(v => v.Album !== "Video Fabio");
+    renderVideos(goproVideos);
     const daysContainer = document.getElementById('days-container');
     if (daysContainer) {
         daysContainer.style.display = 'none';
@@ -390,9 +472,9 @@ function renderVideos(videoList, groupByMonth = true) {
 function createVideoCardHtml(v, index) {
     let thumbnailUrl = '';
 
-    const realLink = decrittografaLink(v.Link) || v.Link;
+    const realLink = decrittografaLinkFabio(v.Link) || v.Link;
 
-    if (v.Album === "Video Fabio" && !userPassword) {
+    if (v.Album === "Video Fabio" && !passwordFabio) {
         thumbnailUrl = "https://img.youtube.com/vi/00000000000/hqdefault.jpg";
     } else {
         const isFoto = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(realLink || '');
@@ -498,16 +580,16 @@ window.openModal = (index) => {
     const v = currentVideosList[index];
     if (!v) return;
 
-    if (v.Link && v.Link.startsWith("U2FsdGVkX1") && !ottieniPassword()) {
+    if (v.Album === "Video Fabio" && !ottieniPasswordFabio()) {
         return;
     }
 
-    // Tenta la decrittazione
-    const realLink = decrittografaLink(v.Link);
+    const realLink = decrittografaLinkFabio(v.Link);
 
     if (!realLink) {
         alert("Password errata o impossibile decrittografare il link!");
-        userPassword = "";
+        passwordFabio = "";
+        isFabioUnlocked = false;
         return;
     }
 
@@ -1000,65 +1082,92 @@ function aggiornaPulsantiSezione() {
     const container = document.getElementById('section-buttons-container');
     if (!container) return;
 
-    if (sezioneAttiva === 'gopro') {
-        container.innerHTML = `
-            <button class="btn-gta-leak" onclick="cambiaSezione('gta')">Leak di GTA VI</button>
-            <button class="btn-gta-leak" onclick="cambiaSezione('drone')">Drone</button>
-        `;
-    } else if (sezioneAttiva === 'gta') {
-        container.innerHTML = `
-            <button class="btn-gta-leak" onclick="cambiaSezione('gopro')">Video della GoPro</button>
-            <button class="btn-gta-leak" onclick="cambiaSezione('drone')">Drone</button>
-        `;
-    } else if (sezioneAttiva === 'drone') {
-        container.innerHTML = `
-            <button class="btn-gta-leak" onclick="cambiaSezione('gopro')">Video della GoPro</button>
-            <button class="btn-gta-leak" onclick="cambiaSezione('gta')">Leak di GTA VI</button>
-        `;
+    const sezioni = [
+        { id: 'gopro', label: 'Video della GoPro' },
+        { id: 'fabio', label: 'File di Fabio' },
+        { id: 'drone', label: 'Drone' },
+        { id: 'gta', label: 'Leak di GTA VI' }
+    ];
+
+    container.innerHTML = sezioni
+        .filter(s => s.id !== sezioneAttiva)
+        .map(s => `<button class="btn-gta-leak" onclick="cambiaSezione('${s.id}')">${s.label}</button>`)
+        .join('');
+}
+
+async function mostraVideoFabio() {
+    if (!ottieniPasswordFabio()) {
+        return false;
     }
+
+    sezioneAttiva = 'fabio';
+    
+    const sezioniFiltri = document.getElementById('sezioni-filtri');
+    const periodiContainer = document.getElementById('periodi-container');
+    const fileContainer = document.getElementById('file-container');
+
+    if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+    if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
+    if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
+
+    aggiornaPulsantiSezione();
+
+    const fabioVideos = allVideos.filter(v => v.Album === "Video Fabio");
+    currentVideosList = fabioVideos;
+
+    const container = document.getElementById('video-container');
+    container.innerHTML = `
+        <div class="month-section" style="grid-column: 1 / -1; width: 100%; margin-bottom: 25px;">
+            <h2 class="month-title" style="font-size: 1.3rem; margin: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px;">File di Fabio</h2>
+            <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+                ${fabioVideos.map((v, index) => createVideoCardHtml(v, index)).join('')}
+            </div>
+        </div>
+    `;
+
+    return true;
 }
 
 async function cambiaSezione(nuovaSezione) {
     if (sezioneAttiva === nuovaSezione) return;
 
+    if (nuovaSezione === 'fabio') {
+        if (!ottieniPasswordFabio()) return;
+    } else if (nuovaSezione === 'drone') {
+        if (!(await ottieniPasswordDrone())) return;
+    }
+
+    sezioneAttiva = nuovaSezione;
+
     const sezioniFiltri = document.getElementById('sezioni-filtri');
     const periodiContainer = document.getElementById('periodi-container');
     const fileContainer = document.getElementById('file-container');
 
-    if (nuovaSezione === 'gopro') {
-        sezioneAttiva = 'gopro';
+    if (nuovaSezione === 'fabio') {
+        if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+        if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
+        if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
+        aggiornaPulsantiSezione();
+        mostraVideoFabio();
+    } else if (nuovaSezione === 'drone') {
+        if (sezioniFiltri) sezioniFiltri.style.display = 'none';
+        if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
+        if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
+        aggiornaPulsantiSezione();
+        await mostraDrone();
+    } else if (nuovaSezione === 'gopro') {
         if (sezioniFiltri) sezioniFiltri.style.display = 'block';
         if (periodiContainer) periodiContainer.style.display = 'none';
         if (fileContainer) fileContainer.style.display = 'none';
         aggiornaPulsantiSezione();
-        
-        if (typeof loadGallery === 'function') {
-            loadGallery();
-        } else if (typeof renderVideos === 'function' && typeof allVideos !== 'undefined') {
-            renderVideos(allVideos);
-        }
+        const goproVideos = allVideos.filter(v => v.Album !== "Video Fabio");
+        renderVideos(goproVideos);
     } else if (nuovaSezione === 'gta') {
-        sezioneAttiva = 'gta';
         if (sezioniFiltri) sezioniFiltri.style.display = 'none';
         if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
         if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
         aggiornaPulsantiSezione();
-        
-        if (typeof mostraLeakGTA === 'function') {
-            await mostraLeakGTA();
-        } else if (typeof caricaGTA === 'function') {
-            await caricaGTA();
-        }
-    } else if (nuovaSezione === 'drone') {
-        sezioneAttiva = 'drone';
-        if (sezioniFiltri) sezioniFiltri.style.display = 'none';
-        if (periodiContainer) { periodiContainer.style.display = 'none'; periodiContainer.innerHTML = ''; }
-        if (fileContainer) { fileContainer.style.display = 'none'; fileContainer.innerHTML = ''; }
-        aggiornaPulsantiSezione();
-        
-        if (typeof mostraDrone === 'function') {
-            await mostraDrone();
-        }
+        await mostraLeakGTA();
     }
 }
 
@@ -1067,36 +1176,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function mostraDrone() {
-    sezioneAttiva = 'drone';
-    
-    const sezioniFiltri = document.getElementById('sezioni-filtri');
-    const periodiContainer = document.getElementById('periodi-container');
-    const fileContainer = document.getElementById('file-container');
-
-    if (sezioniFiltri) sezioniFiltri.style.display = 'none';
-    if (periodiContainer) {
-        periodiContainer.style.display = 'none';
-        periodiContainer.innerHTML = '';
-    }
-    if (fileContainer) {
-        fileContainer.style.display = 'none';
-        fileContainer.innerHTML = '';
-    }
-
-    if (typeof aggiornaPulsantiSezione === 'function') {
-        aggiornaPulsantiSezione();
-    }
-
     const container = document.getElementById('video-container');
-    container.innerHTML = '<p style="text-align:center; width:100%;">Caricamento contenuti Drone in corso...</p>';
+    if (container) {
+        container.innerHTML = '<p style="text-align:center; width:100%;">Caricamento contenuti Drone in corso...</p>';
+    }
 
     try {
         const response = await fetch('data3.json?v=' + Date.now());
-        droneItemsList = await response.json();
+        window.droneData = await response.json();
+        droneItemsList = window.droneData;
         renderizzaDrone(droneItemsList);
+        return true;
     } catch (error) {
         console.error("Errore nel caricamento di data3.json:", error);
-        container.innerHTML = '<p style="text-align:center; width:100%;">Errore nel caricamento dei file Drone.</p>';
+        if (container) {
+            container.innerHTML = '<p style="text-align:center; width:100%;">Errore nel caricamento dei file Drone.</p>';
+        }
+        return false;
     }
 }
 
@@ -1109,23 +1205,32 @@ function renderizzaDrone(items) {
         return;
     }
 
+    const youtubeFallback = "https://img.youtube.com/vi/00000000000/hqdefault.jpg";
+
     items.forEach((item, index) => {
-        const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(item.Link || '') || item["Tipo di File"]?.toLowerCase() === 'jpg';
+        const realLink = decrittografaLinkDrone(item.Link);
+        const isDecrypted = realLink && !realLink.startsWith("U2FsdGVkX1");
         const nomeFile = item.Nome || item["Nome file"] || 'File senza nome';
+
+        let mediaPreview = '';
+
+        if (!isDecrypted) {
+            mediaPreview = `<img src="${youtubeFallback}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;">`;
+        } else {
+            const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(realLink) || item["Tipo di File"]?.toLowerCase() === 'jpg';
+
+            if (isImage) {
+                mediaPreview = `<img src="${realLink}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;" onerror="this.onerror=null; this.src='${youtubeFallback}';">`;
+            } else {
+                const thumbUrl = `thumbnails2/${nomeFile}.jpg`;
+                mediaPreview = `<img src="${thumbUrl}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;" onerror="this.onerror=null; this.src='${youtubeFallback}';">`;
+            }
+        }
 
         const card = document.createElement('div');
         card.className = 'video-card';
         card.style.cursor = 'pointer';
         card.onclick = () => apriModalDrone(index);
-
-        let mediaPreview = '';
-
-        if (isImage) {
-            mediaPreview = `<img src="${item.Link}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;">`;
-        } else {
-            const thumbUrl = `thumbnails2/${nomeFile}.jpg`;
-            mediaPreview = `<img src="${thumbUrl}" class="video-thumbnail" alt="${nomeFile}" style="width:100%; height:180px; object-fit:cover; border-radius:8px;" onerror="this.outerHTML='<video src=\\'${item.Link}\\' class=\\'video-thumbnail\\' style=\\'width:100%; height:180px; object-fit:cover; border-radius:8px;\\' preload=\\'metadata\\' muted playsinline></video>';">`;
-        }
 
         const durataBadge = (item.Durata && item.Durata !== "/") 
             ? `<span class="duration-badge" style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold;">${item.Durata}</span>` 
@@ -1146,16 +1251,28 @@ function apriModalDrone(index) {
     const item = droneItemsList[index];
     if (!item) return;
 
+    if (item.Link && item.Link.startsWith("U2FsdGVkX1") && !isDroneUnlocked) {
+        return;
+    }
+
+    const realLink = decrittografaLinkDrone(item.Link);
+
+    if (!realLink) {
+        alert("Password errata o impossibile decrittografare il link!");
+        passwordDrone = "";
+        isDroneUnlocked = false;
+        return;
+    }
+
     const modal = document.getElementById('video-modal');
     const modalBody = document.getElementById('modal-body');
 
-    const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(item.Link || '') || item["Tipo di File"]?.toLowerCase() === 'jpg';
-
+    const isImage = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(realLink || '') || item["Tipo di File"]?.toLowerCase() === 'jpg';
     const caricatoSu = item["Caricato su"] || 'Catbox';
 
     let mediaContent = isImage
-        ? `<img src="${item.Link}" alt="${item.Nome}" style="width:100%; max-height:450px; object-fit:contain; border-radius:8px;">`
-        : `<video src="${item.Link}" controls style="width:100%; max-height:450px; border-radius:8px;" autoplay></video>`;
+        ? `<img src="${realLink}" alt="${item.Nome}" style="width:100%; max-height:450px; object-fit:contain; border-radius:8px;">`
+        : `<video src="${realLink}" controls style="width:100%; max-height:450px; border-radius:8px;" autoplay></video>`;
 
     modalBody.innerHTML = `
         <div class="modal-video-wrapper" style="margin-bottom: 15px;">

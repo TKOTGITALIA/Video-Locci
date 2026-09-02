@@ -16473,5 +16473,137 @@
     "Data di caricamento": "01/09/2026",
     "Nome originale video": "GP021900.MP4",
     "Durata": "1:16"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 1/2 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/g_EuyY7QMsk",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GOPR1901.MP4",
+    "Durata": "12:00"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 2/2 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/iQZKdncvOSw",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GP011901.MP4",
+    "Durata": "4:17"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 1 visuale Locci 1/3 02/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/6wQT_XI9rcw",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GOPR1902.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 1 visuale Locci 2/3 02/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/p0cD-JVd_XU",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GP011902.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 1 visuale Locci 3/3 02/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/xVziH0oQYsk",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GP021902.MP4",
+    "Durata": "3:09"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 2 visuale Locci 1/2 02/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/D6f1gOQ4-rw",
+    "Data": "02/09/2026",
+    "Data di caricamento": "02/09/2026",
+    "Nome originale video": "GOPR1903.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 2 visuale Locci 2/2 02/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 3 1/4 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 3 2/4 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 3 3/4 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 3 4/4 02/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "02/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "",
+    "Durata": ""
   }
 ]
