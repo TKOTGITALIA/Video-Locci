@@ -146,7 +146,7 @@ async function loadGallery() {
 
 function renderPeople(videos) {
     const container = document.getElementById('people-albums');
-    const hiddenPeople = ["Fava", "Itallo", "Gio", "Minetto"];
+    const hiddenPeople = ["Fava", "Itallo", "Gioele", "Minetto", "Diego Lavo"];
     let counts = {};
     let otherCounts = {};
 

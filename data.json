@@ -7038,77 +7038,56 @@
     "Album": "Locci",
     "Nome originale video": "/",
     "Data di caricamento": "",
-    "Caricamento": "Completato",
     "Durata": "9:56"
   },
   {
     "Nome": "Giro in moto Locci e Jaky 1 visuale Locci 1/3 08/03/2026",
     "Link": "https://www.youtube.com/watch?v=W3TA6ryUL4s",
-    "Persone": [
-      "Locci",
-      "Jaky"
-    ],
+    "Persone": ["Locci","Jaky"],
     "Data": "08/03/2026",
     "Visuale": "Locci",
     "Album": "Locci e Jaky",
     "Nome originale video": "/",
     "Data di caricamento": "",
-    "Caricamento": "Completato",
     "Durata": "12:00"
   },
   {
     "Nome": "Giro in moto Locci e Jaky 1 visuale Locci 2/3 08/03/2026",
     "Link": "https://www.youtube.com/watch?v=PEHLBiNhU3U",
-    "Persone": [
-      "Locci",
-      "Jaky"
-    ],
+    "Persone": ["Locci","Jaky"],
     "Data": "08/03/2026",
     "Visuale": "Locci",
     "Album": "Locci e Jaky",
     "Nome originale video": "/",
     "Data di caricamento": "",
-    "Caricamento": "Completato",
     "Durata": "11:59"
   },
   {
     "Nome": "Giro in moto Locci e Jaky 1 visuale Locci 3/3 08/03/2026",
     "Link": "https://www.youtube.com/watch?v=_aPnt94S3bw",
-    "Persone": [
-      "Locci",
-      "Jaky"
-    ],
+    "Persone": ["Locci","Jaky"],
     "Data": "08/03/2026",
     "Visuale": "Locci",
     "Album": "Locci e Jaky",
     "Nome originale video": "/",
     "Data di caricamento": "",
-    "Caricamento": "Completato",
     "Durata": "2:53"
   },
   {
     "Nome": "Giro in moto Locci e Jaky 2 visuale Locci 08/03/2026",
     "Link": "https://www.youtube.com/watch?v=SDZGAEPLqbY",
-    "Persone": [
-      "Locci",
-      "Jaky"
-    ],
+    "Persone": ["Locci","Jaky"],
     "Data": "08/03/2026",
     "Visuale": "Locci",
     "Album": "Locci e Jaky",
     "Nome originale video": "/",
     "Data di caricamento": "",
-    "Caricamento": "Completato",
     "Durata": "11:20"
   },
   {
-    "Nome": "Locci, Jaky e Gio visuale Locci 08/03/2026",
+    "Nome": "Locci, Jaky e Gioele visuale Locci 08/03/2026",
     "Link": "https://www.youtube.com/watch?v=M2BtTY4zy2Q",
-    "Persone": [
-      "Locci",
-      "Jaky",
-      "Gio"
-    ],
+    "Persone": ["Locci","Jaky","Gioele"],
     "Data": "08/03/2026",
     "Visuale": "Locci",
     "Album": "Locci e Jaky",
@@ -16693,5 +16672,49 @@
     "Data di caricamento": "03/09/2026",
     "Nome originale video": "GP011908.MP4",
     "Durata": "6:48"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 04/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/8g3cULvAIW8",
+    "Data": "04/09/2026",
+    "Data di caricamento": "04/09/2026",
+    "Nome originale video": "GOPR1909.MP4",
+    "Durata": "11:45"
+  },
+  {
+    "Nome": "Giro in moto Locci e Diego Lavo 04/09/2026",
+    "Persone": ["Locci","Diego Lavo"],
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/vLq06yTWFtI",
+    "Data": "04/09/2026",
+    "Data di caricamento": "04/09/2026",
+    "Nome originale video": "GOPR1910.MP4",
+    "Durata": "4:20"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 1/2 04/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/wHbO6B_mS-g",
+    "Data": "04/09/2026",
+    "Data di caricamento": "04/09/2026",
+    "Nome originale video": "GOPR1911.MP4",
+    "Durata": "12:03"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 2/2 04/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/WWfn0wce9MI",
+    "Data": "04/09/2026",
+    "Data di caricamento": "04/09/2026",
+    "Nome originale video": "GP011911.MP4",
+    "Durata": "8:23"
   }
 ]
