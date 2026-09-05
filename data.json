@@ -16815,5 +16815,137 @@
     "Data di caricamento": "05/09/2026",
     "Nome originale video": "GP021915.MP4",
     "Durata": "2:49"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 05/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/linkYzAQztg",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GOPR1916.MP4",
+    "Durata": "10:25"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 1/5 05/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/DsGX-vNnz18",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GOPR1917.MP4",
+    "Durata": "12:08"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 2/5 05/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/fAhxPbZ9o78",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP011917.MP4",
+    "Durata": "12:13"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 3/5 05/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/ZTxUCbKMXIg",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP021917.MP4",
+    "Durata": "12:04"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 4/5 05/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/pmwIwvDk1xk",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP031917.MP4",
+    "Durata": "12:04"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 5/5 05/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/6ur1i04nSto",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP041917.MP4",
+    "Durata": "7:26"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 05/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/hSEMJm55qqo",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GOPR1918.MP4",
+    "Durata": "5:41"
+  },
+  {
+    "Nome": "Giro in moto Locci 3 1/5 05/09/2026 (4/5 e 5/5 persi)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/Q0bWk74Nogg",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GOPR1919.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci 3 2/5 05/09/2026 (4/5 e 5/5 persi)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/wbZtgXaITPQ",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP011919.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci 3 3/5 05/09/2026 (4/5 e 5/5 persi)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/M3ygu7mIZmk",
+    "Data": "05/09/2026",
+    "Data di caricamento": "05/09/2026",
+    "Nome originale video": "GP021919.MP4",
+    "Durata": "11:47"
+  },
+  {
+    "Nome": "Giro in moto Locci 3 4/5 05/09/2026 (perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "/",
+    "Data": "05/09/2026",
+    "Data di caricamento": "/",
+    "Nome originale video": "GP031919.MP4",
+    "Durata": "/"
+  },
+  {
+    "Nome": "Giro in moto Locci 3 5/5 05/09/2026 (perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "/",
+    "Data": "05/09/2026",
+    "Data di caricamento": "/",
+    "Nome originale video": "GP041919.MP4",
+    "Durata": "/"
   }
 ]
