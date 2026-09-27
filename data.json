@@ -17668,11 +17668,11 @@
     "Persone": "Locci",
     "Album": "Locci",
     "Visuale": "Locci",
-    "Link": "",
+    "Link": "https://youtu.be/1wKHamuTXP8",
     "Data": "26/09/2026",
-    "Data di caricamento": "",
+    "Data di caricamento": "27/09/2026",
     "Nome originale video": "GOPR2442.MP4",
-    "Durata": ""
+    "Durata": "12:05"
   },
 {
     "Nome": "Giro in moto Locci 2 2/4 26/09/2026",
@@ -17705,6 +17705,83 @@
     "Data": "26/09/2026",
     "Data di caricamento": "",
     "Nome originale video": "GP032442.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Verlezza e Zano 1 visuale Locci 27/09/2026",
+    "Persone": ["Locci","Verlezza","Zano"],
+    "Album": "Locci, Verlezza e Zano",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2443.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Verlezza e Zano 2 visuale Locci 1/4 27/09/2026",
+    "Persone": ["Locci","Verlezza","Zano"],
+    "Album": "Locci, Verlezza e Zano",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2445.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Verlezza e Zano 2 visuale Locci 2/4 27/09/2026",
+    "Persone": ["Locci","Verlezza","Zano"],
+    "Album": "Locci, Verlezza e Zano",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP012445.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Verlezza e Zano 2 visuale Locci 3/4 27/09/2026",
+    "Persone": ["Locci","Verlezza","Zano"],
+    "Album": "Locci, Verlezza e Zano",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP022445.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Verlezza e Zano 2 visuale Locci 4/4 27/09/2026",
+    "Persone": ["Locci","Verlezza","Zano"],
+    "Album": "Locci, Verlezza e Zano",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2446.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci e Verlezza visuale Locci 1/2 27/09/2026",
+    "Persone": ["Locci","Verlezza"],
+    "Album": "Locci e Verlezza",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP012446.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci e Verlezza visuale Locci 2/2 27/09/2026",
+    "Persone": ["Locci","Verlezza"],
+    "Album": "Locci e Verlezza",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "27/09/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP022446.MP4",
     "Durata": ""
   }
 ]

@@ -146,7 +146,7 @@ async function loadGallery() {
 
 function renderPeople(videos) {
     const container = document.getElementById('people-albums');
-    const hiddenPeople = ["Fava", "Itallo", "Gioele", "Minetto", "Diego Lavo"];
+    const hiddenPeople = ["Fava", "Itallo", "Gioele", "Minetto", "Diego Lavo", "Zano"];
     let counts = {};
     let otherCounts = {};
 
@@ -234,8 +234,12 @@ function renderMonthsAndYears(videos) {
         '<div id="days-container" class="filter-row" style="margin-top: 8px; display: none;"></div>';
 }
 
+let extraAlbumsAperti = false;
+
 function renderAlbums(videos) {
     const container = document.getElementById('collection-albums');
+    if (!container) return;
+
     let counts = {};
     
     videos.filter(v => v.Album !== "Video Fabio").forEach(v => {
@@ -245,28 +249,62 @@ function renderAlbums(videos) {
 
     let albumsSorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
     
-    const specialKeys = ["Timelapse", "Carnevale di Ivrea", "Altro"];
-    let mainAlbums = albumsSorted.filter(a => !specialKeys.includes(a));
-    let specialAlbums = specialKeys.filter(a => counts[a]);
+    const albumDaNascondere = [
+        "Locci, Verlezza e Zano", 
+        "Locci e Noemina", 
+        "Locci, Verlezza e Vairetto", 
+        "Locci, Gili e Jaky", 
+        "Timelapse", 
+        "Carnevale di Ivrea", 
+        "Altro"
+    ];
 
-    let html = '<div style="margin-bottom: 6px; display: flex; align-items: center; gap: 10px;"><strong>Album:</strong>' + 
-        `<button class="album-btn" onclick="resetFilters()"><strong>Tutti i video</strong> (${allVideos.filter(v => v.Album !== "Video Fabio").length})</button></div>` + 
-        '<div class="filter-row">' +
-        mainAlbums.map(a => 
-            `<button class="album-btn" onclick="filterByAlbum('${a}')">${a} (${counts[a]})</button>`
-        ).join('') +
-        '</div>';
+    let mainAlbums = albumsSorted.filter(a => !albumDaNascondere.includes(a));
+    let extraAlbums = albumDaNascondere.filter(a => counts[a]);
 
-    if (specialAlbums.length > 0) {
-        html += '<div class="filter-row" style="margin-top: 8px;">' +
-            specialAlbums.map(a => 
-                `<button class="album-btn" onclick="filterByAlbum('${a}')">${a} (${counts[a]})</button>`
-            ).join('') +
-            '</div>';
-    }
+    const totaleGoPro = allVideos.filter(v => v.Album !== "Video Fabio").length;
+
+    let html = `
+        <div style="margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <strong>Album:</strong>
+            <button class="album-btn" onclick="resetFilters()">
+                <strong>Tutti i video</strong> (${totaleGoPro})
+            </button>
+        </div>
+
+        <!-- Prima riga: Album sempre visibili + Tasto "Altro" -->
+        <div class="filter-row">
+            ${mainAlbums.map(a => `<button class="album-btn" onclick="filterByAlbum('${a}')">${a} (${counts[a]})</button>`).join('')}
+            ${extraAlbums.length > 0 ? `
+                <button class="album-btn" onclick="toggleExtraAlbums()">
+                    Altro <span id="freccia-album">${extraAlbumsAperti ? '▴' : '▾'}</span>
+                </button>
+            ` : ''}
+        </div>
+
+        <!-- Seconda riga: Album nascosti (compaiono esattamente sotto) -->
+        ${extraAlbums.length > 0 ? `
+            <div id="extra-albums-container" class="filter-row" style="margin-top: 8px; display: ${extraAlbumsAperti ? 'flex' : 'none'};">
+                ${extraAlbums.map(a => `<button class="album-btn" onclick="filterByAlbum('${a}')">${a} (${counts[a]})</button>`).join('')}
+            </div>
+        ` : ''}
+    `;
 
     container.innerHTML = html;
 }
+
+window.toggleExtraAlbums = () => {
+    extraAlbumsAperti = !extraAlbumsAperti;
+    const extraContainer = document.getElementById('extra-albums-container');
+    const freccia = document.getElementById('freccia-album');
+    
+    if (extraContainer) {
+        extraContainer.style.display = extraAlbumsAperti ? 'flex' : 'none';
+    }
+    if (freccia) {
+        freccia.textContent = extraAlbumsAperti ? '▴' : '▾';
+    }
+};
 
 function renderVisuals(videos) {
     const container = document.getElementById('visual-albums');
