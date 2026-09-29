@@ -17860,5 +17860,71 @@
     "Data di caricamento": "28/09/2026",
     "Nome originale video": "GOPR2451.MP4",
     "Durata": "6:20"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 29/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/xrxUBJl957Q",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GOPR2452.MP4",
+    "Durata": "8:11"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 1 visuale Locci 1/2 29/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/pu_HUGlixGM",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GOPR2453.MP4",
+    "Durata": "12:01"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 1 visuale Locci 2/2 29/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/5wpAaYRPhdc",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GP012453.MP4",
+    "Durata": "3:19"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili 2 visuale Locci 29/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/Ms_r0VnfepU",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GOPR2454.MP4",
+    "Durata": "7:17"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 1/2 29/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/lgg7J2Cuh-A",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GOPR2455.MP4",
+    "Durata": "12:03"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 2/2 29/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/oMw7iagoMIQ",
+    "Data": "29/09/2026",
+    "Data di caricamento": "29/09/2026",
+    "Nome originale video": "GP012455.MP4",
+    "Durata": "10:28"
   }
 ]
