@@ -17926,5 +17926,71 @@
     "Data di caricamento": "29/09/2026",
     "Nome originale video": "GP012455.MP4",
     "Durata": "10:28"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 1/2 30/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/mH89vdcSggE",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GOPR2456.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 2/2 30/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/zlPFT0Wa_ZI",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GP012456.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 1/2 30/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/WR80IPyOv-0",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GP022456.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 2/2 30/09/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/RFgKrflkIFw",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GP032456.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 1/2 30/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/K99EIw-Zyiw",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GP042456.MP4",
+    "Durata": "5:53"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 2/2 30/09/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/3z5CU394XL0",
+    "Data": "30/09/2026",
+    "Data di caricamento": "30/09/2026",
+    "Nome originale video": "GOPR2458.MP4",
+    "Durata": "8:15"
   }
 ]
