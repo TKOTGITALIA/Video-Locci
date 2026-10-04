@@ -250,10 +250,9 @@ function renderAlbums(videos) {
     let albumsSorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
     
     const albumDaNascondere = [
-        "Locci, Verlezza e Zano", 
         "Locci e Noemina", 
-        "Locci, Verlezza e Vairetto", 
-        "Locci, Gili e Jaky", 
+        "Locci, Verlezza e Zano",
+        "Locci, Verlezza e Vairetto",
         "Timelapse", 
         "Carnevale di Ivrea", 
         "Altro"
