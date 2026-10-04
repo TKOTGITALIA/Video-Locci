@@ -18108,43 +18108,175 @@
     "Persone": "Locci",
     "Album": "Locci",
     "Visuale": "Locci",
-    "Link": "",
+    "Link": "https://youtu.be/A8q1pwLui8o",
     "Data": "03/10/2026",
-    "Data di caricamento": "",
+    "Data di caricamento": "04/10/2026",
     "Nome originale video": "GP042461.MP4",
-    "Durata": ""
+    "Durata": "4:55"
   },
   {
     "Nome": "Giro in moto Locci 4 1/3 03/10/2026",
     "Persone": "Locci",
     "Album": "Locci",
     "Visuale": "Locci",
-    "Link": "",
+    "Link": "https://youtu.be/Z6vG558SGVQ",
     "Data": "03/10/2026",
-    "Data di caricamento": "",
+    "Data di caricamento": "04/10/2026",
     "Nome originale video": "GOPR2462.MP4",
-    "Durata": ""
+    "Durata": "12:05"
   },
   {
     "Nome": "Giro in moto Locci 4 2/3 03/10/2026",
     "Persone": "Locci",
     "Album": "Locci",
     "Visuale": "Locci",
-    "Link": "",
+    "Link": "https://youtu.be/08rrvtpNGDk",
     "Data": "03/10/2026",
-    "Data di caricamento": "",
+    "Data di caricamento": "04/10/2026",
     "Nome originale video": "GP012462.MP4",
-    "Durata": ""
+    "Durata": "12:02"
   },
   {
     "Nome": "Giro in moto Locci 4 3/3 03/10/2026",
     "Persone": "Locci",
     "Album": "Locci",
     "Visuale": "Locci",
-    "Link": "",
+    "Link": "https://youtu.be/NeBFSuW6Wqc",
     "Data": "03/10/2026",
-    "Data di caricamento": "",
+    "Data di caricamento": "04/10/2026",
     "Nome originale video": "GP022462.MP4",
+    "Durata": "5:41"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 04/10/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/cbWClPNmTgM",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GOPR2463.MP4",
+    "Durata": "6:28"
+  },
+  {
+    "Nome": "Giro in moto Locci e Jaky visuale Locci 04/10/2026",
+    "Persone": ["Locci","Jaky"],
+    "Album": "Locci e Jaky",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/USyVirvINBY",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GOPR2464.MP4",
+    "Durata": "6:06"
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 1/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/uEgLvyHSgfE",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GOPR2465.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 2/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/a995McO2MxM",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GP012465.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 3/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/7nGfZbnQz9Y",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GP022465.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 4/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/4uw3y7CIL1g",
+    "Data": "04/10/2026",
+    "Data di caricamento": "04/10/2026",
+    "Nome originale video": "GP032465.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 5/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP042465.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 1 visuale Locci 6/6 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2466.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 2 visuale Locci 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2467.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 3 visuale Locci 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2468.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci, Gili e Jaky 4 visuale Locci 04/10/2026",
+    "Persone": ["Locci","Gili","Jaky"],
+    "Album": "Locci, Gili e Jaky",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2469.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 04/10/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "04/10/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2470.MP4",
     "Durata": ""
   }
 ]
