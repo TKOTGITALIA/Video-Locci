@@ -128,7 +128,7 @@ function fixDropboxUrl(url) {
 
 async function loadGallery() {
     try {
-        const response = await fetch('data.json?v=1.13');
+        const response = await fetch('data.json?v=1.14');
         allVideos = await response.json();
         allVideos.reverse();
 
@@ -146,7 +146,7 @@ async function loadGallery() {
 
 function renderPeople(videos) {
     const container = document.getElementById('people-albums');
-    const hiddenPeople = ["Fava", "Itallo", "Gioele", "Minetto", "Diego Lavo", "Zano"];
+    const hiddenPeople = ["Fava", "Itallo", "Gioele", "Minetto", "Diego Lavornia", "Zano"];
     let counts = {};
     let otherCounts = {};
 
