@@ -19268,5 +19268,126 @@
     "Data di caricamento": "13/11/2026",
     "Nome originale video": "GOPR2518.MP4",
     "Durata": "9:25"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 1/2 14/11/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/Anx0nDIc1Pk",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GOPR2519.MP4",
+    "Durata": "12:10"
+  },
+  {
+    "Nome": "Giro in moto Locci 1 2/2 14/11/2026",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/iSbh_Jh4mus",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GP012519.MP4",
+    "Durata": "2:32"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 1/2 14/11/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/AieHvrEDsQk",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GOPR2520.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci e Gili visuale Locci 2/2 14/11/2026",
+    "Persone": ["Locci","Gili"],
+    "Album": "Locci e Gili",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/oSvn7o3p4Rk",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GP012520.MP4",
+    "Durata": "6:32"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 1/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/QXAHQCcxSLo",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GOPR2521.MP4",
+    "Durata": "11:59"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 2/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "https://youtu.be/qJsEfvK5T44",
+    "Data": "14/11/2026",
+    "Data di caricamento": "14/11/2026",
+    "Nome originale video": "GP012521.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 3/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "14/11/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP022521.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 4/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "14/11/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP032521.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 5/7 14/11/2026 (perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "/",
+    "Data": "14/11/2026",
+    "Data di caricamento": "/",
+    "Nome originale video": "GP042521.MP4",
+    "Durata": "/"
+  },
+  {
+    "Nome": "Giro in moto Locci 2 6/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "14/11/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GOPR2522.MP4",
+    "Durata": ""
+  },
+  {
+    "Nome": "Giro in moto Locci 2 7/7 14/11/2026 (5/7 perso)",
+    "Persone": "Locci",
+    "Album": "Locci",
+    "Visuale": "Locci",
+    "Link": "",
+    "Data": "14/11/2026",
+    "Data di caricamento": "",
+    "Nome originale video": "GP012522.MP4",
+    "Durata": ""
   }
 ]
