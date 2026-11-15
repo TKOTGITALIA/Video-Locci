@@ -657,21 +657,36 @@ window.openModal = (index) => {
     const fovVideo = (v.FOV !== undefined && v.FOV !== '') ? v.FOV : 'Wide';
     const durataVideo = v.Durata || '/';
     const caricatoSu = v["Caricato su"] || 'Youtube';
+    const nomeOriginale = v["Nome originale video"] || '';
+
+    const isFoto = /\.(jpg|jpeg|png|webp|gif)($|\?)/i.test(realLink) || 
+                   /\.(jpg|jpeg|png|webp|gif)$/i.test(nomeOriginale.trim());
+
+    const labelPulsante = isFoto ? 'Guarda Foto' : 'Guarda Video';
 
     const watchYoutubeBtnHtml = (realLink && realLink !== "/")
-        ? `<a href="${realLink}" target="_blank" class="watch-link" style="margin-bottom: 12px;">Guarda Video</a>`
+        ? `<a href="${realLink}" target="_blank" class="watch-link" style="margin-bottom: 12px;">${labelPulsante}</a>`
         : '';
 
     const shareBtnHtml = (realLink && realLink !== "/" && v.Album !== "Video Fabio")
-        ? `<button class="share-btn" onclick="copiaLink('${realLink}', this)">Clicca qui per ottenere il link per condividere il video</button>`
+        ? `<button class="share-btn" onclick="copiaLink('${realLink}', this)">Clicca qui per ottenere il link per condividere ${isFoto ? 'la foto' : 'il video'}</button>`
         : '';
 
     let previewContent = '';
-    if (videoId) {
+    if (isFoto) {
+        previewContent = `
+            <img src="${realLink}" 
+                 referrerpolicy="no-referrer"
+                 onerror="this.onerror=null; this.src='${fallbackUrl}';" 
+                 class="modal-thumbnail-large" 
+                 style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; display: block; margin: 0 auto;"
+                 alt="${v.Nome}">
+        `;
+    } else if (videoId) {
         previewContent = `
             <iframe src="https://www.youtube.com/embed/${videoId}" 
                 title="${v.Nome}" 
-                frameborder="0" 
+                style="width: 100%; aspect-ratio: 16 / 9; border-radius: 8px; display: block; border: none;"
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
@@ -686,6 +701,7 @@ window.openModal = (index) => {
     } else {
         previewContent = `
             <img src="${realLink || fallbackUrl}" 
+                 referrerpolicy="no-referrer"
                  onerror="this.onerror=null; this.src='${fallbackUrl}';" 
                  class="modal-thumbnail-large" 
                  alt="${v.Nome}">
@@ -716,7 +732,7 @@ window.openModal = (index) => {
             <p><strong>Durata:</strong> ${durataVideo}</p>
             <p><strong>Data caricamento:</strong> ${v["Data di caricamento"] || '/'}</p>
             <p><strong>Caricato su:</strong> ${caricatoSu}</p>
-            <p><strong>Nome originale video:</strong> ${v["Nome originale video"] || '/'}</p>
+            <p><strong>Nome originale video:</strong> ${nomeOriginale || '/'}</p>
         </div>
 
         <hr>

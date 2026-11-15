@@ -342,6 +342,19 @@ body.modal-open {
     max-width: 100%;
 }
 
+.modal-video-wrapper {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.modal-video-wrapper iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
 @media (max-width: 768px) {
 
     .video-card {
